@@ -1,0 +1,35 @@
+
+.App__form {
+    max-width: 600px;
+    padding: 37px 100px;
+    margin: 0 auto;
+    box-shadow: 1px 30px 60px 8px rgb(70 72 228 / 7%);
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    background-color: #fff;
+
+  }
+  .App__form .css-wb57ya-MuiFormControl-root-MuiTextField-root{
+    margin-bottom: 27px;
+  }
+  .clearfix{
+    clear:both;
+  }
+  .btns{
+    margin-top: 37px!important;
+  }
+
+
+
+  
+
+  @media(max-width:600px){
+    .App__form {
+        padding: 0px 15px;
+      }
+  }
+
+
+
+ 
+
+  
