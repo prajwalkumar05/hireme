@@ -1,22 +1,18 @@
-import * as React from 'react';
-import ImageList from '@mui/material/ImageList';
-import ImageListItem from '@mui/material/ImageListItem';
+import * as React from "react";
+import ImageList from "@mui/material/ImageList";
+import ImageListItem from "@mui/material/ImageListItem";
+import Grid from '@mui/material/Grid';
+import Box from '@mui/material/Box';
 
 export default function Life() {
   return (
-    <ImageList sx={{ width: "100%", height: 450 }} cols={2} rowHeight={400}>
-      {itemData.map((item) => (
-        <ImageListItem sx={{margin:"10px"}} key={item.img}>
-          <img
-            
-            src={`${item.img}?w=164&h=164&fit=crop&auto=format`}
-            srcSet={`${item.img}?w=164&h=164&fit=crop&auto=format&dpr=2 2x`}
-            alt={item.title}
-            loading="lazy"
-          />
-        </ImageListItem>
-      ))}
-    </ImageList>
+    <Box sx={{display:"flex",flexWrap:"wrap" ,width:"100%",justifyContent:"center"}}>
+      {itemData && itemData.map((item) =>{
+        return(
+          <img style={{margin:"30px",height:"250px",width:"350px"}} src={item.img} alt="image" />
+        )
+      })}
+    </Box>
   );
 }
 

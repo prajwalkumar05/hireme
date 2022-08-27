@@ -61,6 +61,7 @@ const BootstrapInput = styled(InputBase)(({ theme }) => ({
 
 export default function Second() {
   const inputfocus = React.useRef(null);
+  const inputfocuskeyword = React.useRef(null);
 
   const [salary, setSalary] = React.useState("");
   const [job, setJob] = React.useState("");
@@ -69,6 +70,8 @@ export default function Second() {
   const [empType, setEmpType] = React.useState("");
   const [single, setSingle] = React.useState("");
   const [reqirements, setReqirements] = React.useState([]);
+  const [keyword,setKeyWord]=React.useState("")
+  const [keywords, setKeyWords] = React.useState([]);
 
   console.log(job.label);
 
@@ -83,6 +86,19 @@ export default function Second() {
     }
     setSingle("");
     inputfocus.current.focus();
+  };
+
+  const handleKeyWords = (e) => {
+    e.preventDefault();
+    const key = keyword.trim();
+
+    if (key && !keywords.includes(key)) {
+      setKeyWords((p) => {
+        return [...p, key];
+      });
+    }
+    setSingle("");
+    inputfocuskeyword.current.focus();
   };
 
   console.log(reqirements);
@@ -120,7 +136,7 @@ export default function Second() {
 
         <Grid container spacing={2}>
           <Grid item xs={12} sm={6}>
-            <InputLabel sx={{ padding: "0px 0px 0px 18px", fontWeight: "600" }}>
+            <InputLabel sx={{ padding: "0px 0px 0px 6px", fontWeight: "600" }}>
               Job Title
             </InputLabel>
             <Autocomplete
@@ -142,7 +158,7 @@ export default function Second() {
                       border: "1px solid #f8f9fa",
                       marginBottom: "15px",
                       padding: "10px",
-                      marginLeft:"15px"
+                      marginLeft:"0px"
                     }}
                     {...params.InputProps}
                     {...rest}
@@ -151,7 +167,7 @@ export default function Second() {
               }}
             />
             {errors.examplegg && (
-              <p style={{ color: "red", paddingLeft: "6px" }}>
+              <p style={{ color: "red", paddingLeft: "16px" }}>
                 This field is empty{" "}
               </p>
             )}
@@ -176,7 +192,7 @@ export default function Second() {
                       border: "1px solid #f8f9fa",
                       marginBottom: "15px",
                       padding: "10px",
-                      marginLeft:"25px"
+                      marginLeft:"10px"
                     }}
                     {...params.InputProps}
                     {...rest}
@@ -239,7 +255,7 @@ export default function Second() {
               </p>
             )}
           </Grid>
-          <Grid sx={{ my: 3 }} item xs={12}>
+          <Grid sx={{ my: 1 }} item xs={12}>
             <InputLabel sx={{ padding: "0px 0px 0px 10px", fontWeight: "600" }}>
               Job Reqirements
             </InputLabel>
@@ -250,6 +266,7 @@ export default function Second() {
                 value={single}
                 endAdornment={
                   <AddCircleOutlineIcon
+                    sx={{color:"#4045db"}}
                     onClick={handleReqirements}
                   ></AddCircleOutlineIcon>
                 }
@@ -265,7 +282,7 @@ export default function Second() {
                 fullWidth
               />
             </form>
-            <Grid sx={{ my: 2 }} item xs={12}>
+            <Grid sx={{ my: 1 }} item xs={12}>
               <Stack
                 sx={{
                   overflowX: "scroll",
@@ -281,6 +298,51 @@ export default function Second() {
               </Stack>
             </Grid>
           </Grid>
+
+          <Grid sx={{ my: 1 }} item xs={12}>
+            <InputLabel sx={{ padding: "0px 0px 0px 1px", fontWeight: "600" }}>
+              Key Words
+            </InputLabel>
+            <form onSubmit={handleKeyWords}>
+              <InputBase
+                ref={inputfocuskeyword}
+                onChange={(e) => setKeyWord(e.target.value)}
+                value={keyword}
+                endAdornment={
+                  <AddCircleOutlineIcon
+                  sx={{color:"#4045db"}}
+                    onClick={handleKeyWords}
+                  ></AddCircleOutlineIcon>
+                }
+                placeholder="Work Type"
+                sx={{
+                  marginTop: "10px",
+                  borderRadius: "5px",
+                  backgroundColor: "#f8f9fa",
+                  border: "1px solid #f8f9fa",
+                  height: "6vh",
+                  padding: "26px",
+                }}
+                fullWidth
+              />
+            </form>
+            <Grid sx={{ my: 1 }} item xs={12}>
+              <Stack
+                sx={{
+                  overflowX: "scroll",
+                  "&::-webkit-scrollbar": { display: "none" },
+                }}
+                direction="row"
+                spacing={1}
+              >
+                {keywords &&
+                  keywords.map((item) => {
+                    return <Chip label={item} />;
+                  })}
+              </Stack>
+            </Grid>
+          </Grid>
+
 
           <Grid item xs={12}>
             <InputLabel sx={{ padding: "0px 0px 0px 10px", fontWeight: "600" }}>

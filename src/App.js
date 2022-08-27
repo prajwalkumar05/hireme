@@ -3,6 +3,7 @@ import JobApplication from "./JobApplication/JobApplication";
 import SingleCompanyPage from "./Company/SingleCompanyPage";
 import CompanyProfile from "./Companyprofile/CompanyProfile";
 import { Routes, Route } from "react-router-dom";
+import Keyword from "./JobApplication/Keyword";
 
 function App() {
   return (
